@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { createContext, useContext, useState } from "react";
+import Places from "./components/Places";
+import MultiVerse from "./components/MultiVerse";
+import { BookContext } from "./Context/BookContext";
+import PersonelInfo from "./components/PersonelInfo";
 
-function App() {
+export default function App() {
+
+  const [placeVisible, setPlaceVisible] = useState(true)
+  const [timelineVisible, setTimelineVisible] = useState(false)
+  const [personelInfoVisible, setPersonelInfoVisible] = useState(false)
+
+  const handlePlaceClick = (place) => {
+      setPlaceVisible(false)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BookContext.Provider value={{setPlaceVisible,setTimelineVisible,setPersonelInfoVisible}}>
+      <div className="bg-[#212121] text-white h-screen w-screen">
+        {placeVisible && <Places />}
+        {!placeVisible && timelineVisible && <MultiVerse/>}
+        {!placeVisible && !timelineVisible && personelInfoVisible && <PersonelInfo/>}
+      </div>
+    </BookContext.Provider>
+  )
 }
-
-export default App;
