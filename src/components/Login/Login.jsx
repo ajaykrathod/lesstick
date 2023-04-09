@@ -1,10 +1,10 @@
 import { Account } from "appwrite";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import client from "../appwrite/appwrite";
+import { Link, useNavigate } from "react-router-dom";
+import client from "../../appwrite/appwrite";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import app from "../utils/firebase";
-import SnackBar from "./SnackBar";
+import app from "../../utils/firebase";
+import SnackBar from "../SnackBar";
 
 const Login = () => {
   const [email, setEmail] = useState();
@@ -13,6 +13,7 @@ const Login = () => {
   const [snackVisible, setSnackVisible] = useState(false)
   const [isSignedIn, setIsSignedIn] = useState(false)
   const auth = getAuth(app);
+  const navigate = useNavigate()
 
   // const account = new Account(client)
 
@@ -26,6 +27,7 @@ const Login = () => {
         localStorage.setItem("UID",user.uid)
         setTimeout(() => {
           setSnackVisible(false)
+          navigate("/")
         },3000)
         // ...
       })
@@ -36,7 +38,6 @@ const Login = () => {
         setSnackVisible(true)
         setTimeout(() => {
           setSnackVisible(false)
-
         },3000)
       });
     // account.createEmailSession(email,password).then((res) => {

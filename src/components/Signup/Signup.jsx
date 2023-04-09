@@ -1,10 +1,11 @@
 import { Account, Databases, ID } from "appwrite";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import client from "../appwrite/appwrite";
+import client from "../../appwrite/appwrite";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import app from "../utils/firebase";
-import SnackBar from "./SnackBar";
+import app from "../../utils/firebase";
+import SnackBar from "../SnackBar";
+import { addDoc, collection, getFirestore } from "firebase/firestore";
 
 
 const Signup = () => {
@@ -19,6 +20,8 @@ const Signup = () => {
     const [user,setUser] = useState()
   
   const auth = getAuth(app);
+  const db = getFirestore(app)
+  
   // const account = new Account(client)
   
   
@@ -43,9 +46,15 @@ const Signup = () => {
     //     });
 
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+      .then(async(userCredential) => {
         // Signed in 
         const user = userCredential.user;
+        await addDoc(collection(db,"Users"),{
+            firstName:firstName,
+            lastName:lastName,
+            email:email,
+            UID:user.uid
+        })
         setUser(user)
         setIsSignedUp(true)
         setSnackVisible(true)

@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import { useData } from '../Layout/Layout'
-import { useBookContext } from '../Context/BookContext'
+import React, { useEffect, useState } from 'react'
+import { useData } from '../../Layout/Layout'
+import { useBookContext } from '../../Context/BookContext'
 
 function MultiVerse() {
   
@@ -23,6 +23,15 @@ function MultiVerse() {
         else document.getElementById(val).checked = false;
       })
   }
+
+  useEffect(() => {
+    if(data?.date){
+      setDate(date?.date)
+    }
+    if(date?.slot){
+      handleRadio(data?.slot)
+    }
+  },[data])
 
   const handleDatePicker = (e) => {
     // console.log(e);
@@ -47,7 +56,9 @@ function MultiVerse() {
           setDateErrorVisible(true)
           return
         }
-        setData({...data, date:date, slot:slot})
+        
+        let dateString = new Date(date).toDateString()
+        setData({...data, date:dateString, slot:slot})
         setTimelineVisible(false)
         setPersonelInfoVisible(true)
       }

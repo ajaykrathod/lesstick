@@ -5,11 +5,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Route, Routes } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
-import Login from './components/Login';
-import Signup from './components/Signup';
+import Login from './components/Login/Login';
+import Signup from './components/Signup/Signup';
 import Layout from './Layout/Layout';
 import { ChangeContext } from './Context/LessContext';
 import { reducer, initialState } from './Context/InitialState';
+import Profile from './components/Profile/Profile';
+import Donwload from './components/Donwload';
 
 // const router = createBrowserRouter([
 //   {
@@ -32,7 +34,9 @@ root.render(
       <Routes >
           <Route element={<Layout />}>
             <Route path="/" element={<App />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/donwnload" element={<Donwload />} />
             <Route
               path="/signup"
               element={
