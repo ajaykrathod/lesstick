@@ -10,7 +10,7 @@ function Donwload() {
         </strong>
         <div className='m-5 border-gray-600 border px-5 py-3 pt-5 hover:border-red-500 rounded-3xl hover:scale-105 transition-all duration-500 text-center'>
             <img src={`images/logo.png`} className='rounded-3xl w-40 h-40 mb-5'/>
-            <Link to={'/images/logo.png'} target='_blank' download={true} className='rounded-full w-32 bg-red-500 text-white py-2 px-6'>Download</Link>
+            <Link to={'/ticktr.apk'} target='_blank' download={true} className='rounded-full w-32 bg-red-500 text-white py-2 px-6'>Download</Link>
         </div>
     </div>
   )

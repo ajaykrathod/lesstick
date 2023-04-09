@@ -35,7 +35,7 @@ function TicketDownload() {
 
     return (
     <div className='grid h-screen w-screen p-5 text-center place-items-center bg-[#212121] text-white'>
-      <div id="ticket-info" className='ticket-info border border-white-600 rounded-3xl bg-[#212121] items-center grid w-2/4 h-3/5 place-items-center'>
+      <div id="ticket-info" className='ticket-info border border-white-600 rounded-3xl bg-white text-black items-center grid w-2/4 h-3/5 place-items-center'>
         <strong className='text-white-500'>
           Ticket
         </strong>
